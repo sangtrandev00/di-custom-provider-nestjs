@@ -1,3 +1,4 @@
+// Mô hình singleton
 export async function createConnection(): Promise<any> {
     return new Promise((resolve, reject) => {
         console.log('Connecting to database...');

@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerService } from './logger/logger.service';
 import { createConnection } from './database/connection-database';
+import { Logger2Service } from './logger/logger2.service';
 @Module({
   imports: [],
   controllers: [AppController],
@@ -23,7 +24,11 @@ import { createConnection } from './database/connection-database';
         return connection;
       },
     },
-
+    Logger2Service, // Tại sao lại phải import thêm ở đây (Để khai báo thêm cho App.module biết rằng Logger2Service hiện tại)
+    {
+      provide: 'AppLogger',
+      useExisting: Logger2Service, // Tái sử dụng LoggerService
+    },
   ],
   exports: ['Logger']
 })
