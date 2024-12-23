@@ -24,4 +24,9 @@ export class AppController {
   getUsers(): Promise<any> {
     return this.appService.getUsers(); // useFactory
   }
+
+  @Get('messages')
+  sendMessage(): void {
+    this.appService.sendNotification(); // useFactory
+  }
 }

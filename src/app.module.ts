@@ -4,6 +4,13 @@ import { AppService } from './app.service';
 import { LoggerService } from './logger/logger.service';
 import { createConnection } from './database/connection-database';
 import { Logger2Service } from './logger/logger2.service';
+import { notificationProvider } from './notifications/notifications.factory';
+const config = {
+  useZalo: true,
+  zaloApiKey: 'zalo-api-key',
+  emailApiKey: 'email-api-key',
+};
+
 @Module({
   imports: [],
   controllers: [AppController],
@@ -29,6 +36,8 @@ import { Logger2Service } from './logger/logger2.service';
       provide: 'AppLogger',
       useExisting: Logger2Service, // Tái sử dụng LoggerService
     },
+    notificationProvider,
+    { provide: 'CONFIG', useValue: config }, // Cấu hình tuỳ chỉnh
   ],
   exports: ['Logger']
 })
