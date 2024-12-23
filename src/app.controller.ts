@@ -19,4 +19,9 @@ export class AppController {
   getConfig(): string {
     return this.appService.getConfig(); // useValue
   }
+
+  @Get('users')
+  getUsers(): Promise<any> {
+    return this.appService.getUsers(); // useFactory
+  }
 }

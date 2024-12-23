@@ -4,7 +4,7 @@ import { LoggerService } from './logger/logger.service';
 @Injectable()
 export class AppService {
 
-  constructor(@Inject('Logger') private readonly logger: LoggerService, @Inject('CONFIG') private readonly config: any) { }
+  constructor(@Inject('Logger') private readonly logger: LoggerService, @Inject('CONFIG') private readonly config: any, @Inject('DATABASE_CONNECTION') private readonly db: any) { }
 
   logMessage() {
     this.logger.log('Hello, Custom Provider!');
@@ -16,5 +16,13 @@ export class AppService {
 
   getConfig(): string {
     return this.config;
+  }
+
+  async getUsers() {
+
+    console.log("db", this.db);
+    const result = await this.db.query('SELECT * FROM users'); // Simulating a query
+    console.log(result);
+    return result;
   }
 }
